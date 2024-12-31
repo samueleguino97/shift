@@ -6,7 +6,7 @@ import { Beta } from "@/components/emails/beta";
 import { headers } from "next/headers";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-export const turso = createClient({
+const turso = createClient({
   url: process.env.TURSO_DATABASE_URL!,
   authToken: process.env.TURSO_AUTH_TOKEN!,
 });
