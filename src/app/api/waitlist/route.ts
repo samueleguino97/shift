@@ -36,13 +36,20 @@ export async function POST(req: Request) {
 
     const outcome = await result.json();
     if (!outcome.success) {
+      console.log("Captcha failed");
+      console.log(outcome);
       redirect("/?error=true");
     }
-  } catch {
+  } catch (e) {
+    console.log("Captcha failed");
+
+    console.log(e);
     redirect("/?error=true");
   }
 
   if (!email || !phone) {
+    console.log("Missing email or phone");
+    console.log(email, phone);
     redirect("/?error=true");
   }
 
@@ -57,6 +64,8 @@ export async function POST(req: Request) {
     args: [email, phone],
   });
   if (error) {
+    console.log("Error sending email");
+    console.log(error);
     redirect("/?error=true");
   }
 
